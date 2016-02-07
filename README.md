@@ -1,5 +1,5 @@
-# docker-tc-server-agent-bash
+# docker: TeamCity server and agent using bash
 
-Just run "./docker_start_tc_server" and server is up wirh postgres!
-
+1. Just run "./docker_start_tc_server" and server is up wirh postgres!
+2. run "./docker_start_tc_agent" and agent is up!
 
