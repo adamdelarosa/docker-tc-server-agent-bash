@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#Change the server IP to your private IP.
 TC_SERVER_IP="http://192.168.100.204"
 
 docker stop teamcity-agent
