@@ -1,0 +1,7 @@
+#!/bin/bash
+
+docker stop teamcity-agent
+docker rm   teamcity-agent
+
+docker run --name teamcity-agent -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/bin/docker -v /usr/lib/x86_64-linux-gnu/libapparmor.so.1:/lib/x86_64-linux-gnu/libapparmor.so.1 -e TEAMCITY_SERVER=http://192.168.100.109 -dt -p 9090:9090 -t ariya/centos7-teamcity-agent
+
