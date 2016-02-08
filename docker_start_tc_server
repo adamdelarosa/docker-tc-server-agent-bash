@@ -6,8 +6,10 @@ SETUP_TEAMCITY_SQL="create role teamcity with login password 'teamcity';create d
 
 # Start an official docker postgres instance
 docker run -p 5432:5432 --name teamcity-postgres -v /var/lib/postgresql/data:/var/lib/postgresql/data -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD -d postgres
+
 # Create the database using psql
 docker run -it --link teamcity-postgres:postgres  --rm -e "SETUP_TEAMCITY_SQL=$SETUP_TEAMCITY_SQL" -e "PGPASSWORD=$POSTGRES_PASSWORD" postgres bash -c 'exec echo $SETUP_TEAMCITY_SQL |psql -h "$POSTGRES_PORT_5432_TCP_ADDR" -p "$POSTGRES_PORT_5432_TCP_PORT" -U postgres'
+
 #start the teamcity image linking it to the postgres image
 docker run --name teamcity-server --link teamcity-postgres:postgres -p 80:8111 -v /home/noamg/teamcity_data:/var/lib/teamcity -d sjoerdmulder/teamcity:latest
                                                                                                                                                                     
